@@ -183,7 +183,7 @@ workflows:
           # cron: "0 0 * * *"
 
           # every hour, 50 mins past
-          cron: "50 * * * *"
+          cron: "55 * * * *"
           filters:
             branches:
               only:
