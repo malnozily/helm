@@ -1,5 +1,5 @@
 # CircleCI v2 Config
-version: 2
+version: 2.1
 
 defaults_working_directory: &defaults_working_directory
   working_directory: /home/circleci/project
@@ -174,6 +174,35 @@ jobs:
 
 workflows:
   version: 2
+
+  # Runs a daily QA Test
+  daily_test:
+    triggers:
+      - schedule:
+          # daily at midnight UTC
+          # cron: "0 0 * * *"
+
+          # every hour, 50 mins past
+          cron: "50 * * * *"
+          filters:
+            branches:
+              only:
+                # TODO: reenable master only
+                # - master
+                - feature/daily_qa_test
+    jobs:
+      - setup
+      - test
+      # TODO: 
+      # 1. spin up a k3s cluster
+      # 2. package charts
+      # 3. install charts
+      # 4. install postman tests based 
+      # 5. run tests!
+
+
+  
+  # Runs on Tags, PRs, branches
   build_and_test:
     jobs:
       - setup:
