@@ -183,7 +183,7 @@ workflows:
           # cron: "0 0 * * *"
 
           # every hour, 50 mins past
-          cron: "55 * * * *"
+          cron: "0 * * * *"
           filters:
             branches:
               only:
@@ -191,8 +191,20 @@ workflows:
                 # - master
                 - feature/daily_qa_test
     jobs:
-      - setup
-      - test
+      - setup:
+          context: org-global
+          filters:
+            branches:
+              only:
+                - /feature.*/
+
+      - test:
+          context: org-global
+          filters:
+            branches:
+              only:
+                - /feature.*/
+
       # TODO: 
       # 1. spin up a k3s cluster
       # 2. package charts
