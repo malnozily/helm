@@ -195,7 +195,7 @@ workflows:
           # daily at midnight UTC
           # cron: "0 0 * * *"
 
-          cron: "50 * * * *"
+          cron: "0 * * * *"
           filters:
             branches:
               only:
