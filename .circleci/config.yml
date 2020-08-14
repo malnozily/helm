@@ -176,6 +176,16 @@ jobs:
           name: Publish Helm Charts
           command: .circleci/publish_helm_charts.sh
 
+  test-e2e:
+    executor: default-machine
+    steps:
+      - checkout
+      - run: 
+          name: temp clone the mini-loop repo
+          command: |
+            git clone --branch feature/daily-qa-test-2 git@github.com:tdaly61/mini-loop.git
+
+
   slack-announcement:
     executor: default-docker-helm
     steps:
