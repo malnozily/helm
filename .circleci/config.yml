@@ -215,6 +215,14 @@ workflows:
               only:
                 - feature/daily-qa-test-2
 
+      - test-e2e:
+          context: org-global
+            filters:
+              branches:
+                only:
+                  - feature/daily-qa-test-2
+    
+
   # Runs a daily QA Test
   daily_test:
     triggers:
