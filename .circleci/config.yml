@@ -181,9 +181,9 @@ jobs:
     steps:
       - checkout
       - run: 
-          name: temp clone the mini-loop repo
-          command: |
-            git clone --branch feature/daily-qa-test-2 git@github.com:tdaly61/mini-loop.git
+          name: Run the end to end tests
+          command: .circleci/test_k3s.sh
+      # TODO: collect test results somehow...
 
 
   slack-announcement:
