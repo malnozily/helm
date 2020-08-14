@@ -217,10 +217,10 @@ workflows:
 
       - test-e2e:
           context: org-global
-            filters:
-              branches:
-                only:
-                  - feature/daily-qa-test-2
+          filters:
+            branches:
+              only:
+                - feature/daily-qa-test-2
     
 
   # Runs a daily QA Test
