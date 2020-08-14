@@ -187,6 +187,43 @@ jobs:
 
 workflows:
   version: 2
+
+   # Runs a daily QA Test
+  daily_test:
+    triggers:
+      - schedule:
+          # daily at midnight UTC
+          # cron: "0 0 * * *"
+
+          cron: "50 * * * *"
+          filters:
+            branches:
+              only:
+                # TODO: reenable master only
+                # - master
+                - feature/daily-qa-test-2
+    jobs:
+      - setup:
+          context: org-global
+          filters:
+            branches:
+              only:
+                - feature/daily-qa-test-2
+
+      - test:
+          context: org-global
+          filters:
+            branches:
+              only:
+                - feature/daily-qa-test-2
+
+      # TODO: 
+      # 1. spin up a k3s cluster
+      # 2. package charts
+      # 3. install charts
+      # 4. install postman tests based 
+      # 5. run tests!
+
   build_and_test:
     jobs:
       - setup:
