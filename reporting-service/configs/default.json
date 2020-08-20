@@ -1,0 +1,10 @@
+{{- $dbDeployHost := (.Values.config.db_host | replace "$release_name" .Release.Name) }}
+{
+  "LISTEN_ADDRESS": "0.0.0.0",
+  "PORT": {{ .Values.service.ports.api.internalPort }},
+  "DB_HOST": "{{ $dbDeployHost }}",
+  "DB_USER": "{{ .Values.config.db_user }}",
+  "DB_PASSWORD": "{{ .Values.config.db_password }}",
+  "DB_DATABASE": "{{ .Values.config.db_database }}",
+  }
+}
