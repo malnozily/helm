@@ -1,0 +1,37 @@
+# Default values for central.
+# This is a YAML-formatted file.
+# Declare global configurations
+global: {}
+
+# Declare variables to be passed into your templates.
+
+testrunner:
+  image:
+    repository: mojaloop/test-runner
+    tag: v0.1
+    pullPolicy: Always
+
+  ## Ref: https://helm.sh/docs/topics/charts_hooks/#hook-deletion-policies
+  deletePolicy: before-hook-creation
+
+  cases:
+    # - name: setup-hub
+    #   collection: https://raw.githubusercontent.com/mojaloop/postman/master/MojaloopHub_Setup.postman_collection.json
+    #   environment: https://raw.githubusercontent.com/mojaloop/deploy-config/deploy/PI12.3/postmanEnvironments/Mojaloop-DEV2-MojaSims.postman_environment.json?token=ACW5O2NCTPFNYZ2GO4DCRF273HVGY
+    #   delay: 100
+    # - name: setup-onboarding-mojasim
+    #   collection: https://raw.githubusercontent.com/mojaloop/postman/master/MojaloopSims_Onboarding.postman_collection.json
+    #   environment: https://raw.githubusercontent.com/mojaloop/deploy-config/deploy/PI12.3/postmanEnvironments/Mojaloop-DEV2-MojaSims.postman_environment.json?token=ACW5O2NCTPFNYZ2GO4DCRF273HVGY
+    #   delay: 100
+    - name: golden-path-mojasim
+      collection: https://raw.githubusercontent.com/mojaloop/postman/master/Golden_Path_Mojaloop.postman_collection.json
+      environment: https://raw.githubusercontent.com/mojaloop/deploy-config/deploy/PI12.3/postmanEnvironments/Mojaloop-DEV2-MojaSims.postman_environment.json?token=ACW5O2NCTPFNYZ2GO4DCRF273HVGY
+      delay: 100
+    # - name: setup-onboarding-legacy
+    #   collection: https://raw.githubusercontent.com/mojaloop/postman/master/ML_OSS_Setup_LegacySim.postman_collection.json
+    #   environment: https://raw.githubusercontent.com/mojaloop/deploy-config/deploy/PI12.3/postmanEnvironments/Mojaloop-DEV2-MojaSims.postman_environment.json?token=ACW5O2NCTPFNYZ2GO4DCRF273HVGY
+    #   delay: 100
+    # - name: golden-path-mojasim
+    #   collection: https://raw.githubusercontent.com/mojaloop/postman/master/ML_OSS_Golden_Path_LegacySim.postman_collection.json
+    #   environment: https://raw.githubusercontent.com/mojaloop/deploy-config/deploy/PI12.3/postmanEnvironments/Mojaloop-DEV2-MojaSims.postman_environment.json?token=ACW5O2NCTPFNYZ2GO4DCRF273HVGY
+    #   delay: 100

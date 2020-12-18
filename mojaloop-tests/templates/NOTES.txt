@@ -1,0 +1,32 @@
+To run tests can be run using one of the following command examples:
+
+    1. Run tests:
+    helm test {{ .Release.Name }}
+
+    2. This will dump all logs after the tests have completed:
+    helm test --logs {{ .Release.Name }}
+
+    3. Same as 2, but here we set the timeout for each test to 10m
+    helm test --logs --timeout 10m {{ .Release.Name }}
+
+{{ range $i, $case := .Values.testrunner.cases -}}
+
+---- USECASE [{{ $i }}]: {{ $case.name }} ----
+
+To view the test report for {{ $case.name }}, you can use the following command:
+
+    1. Print logs
+    kubectl -n {{ $.Release.Namespace }} logs pod/{{ $.Release.Name }}-test-{{ $i }}-{{ $case.name }}
+
+    2. Tail logs
+    kubectl -n {{ $.Release.Namespace }} logs -f pod/{{ $.Release.Name }}-test-{{ $i }}-{{ $case.name }}
+{{ printf "\n" }}
+{{- end }}
+----------------------------------------------
+
+Run the following commands to cleanup any tests:
+{{ range $i, $case := .Values.testrunner.cases -}}
+
+    kubectl -n {{ $.Release.Namespace }} delete pod/{{ $.Release.Name }}-test-{{ $i }}-{{ $case.name }}
+{{ printf "\n" }}
+{{- end }}

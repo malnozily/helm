@@ -1,14 +1,13 @@
 apiVersion: v1
-description: Central-Ledger Transfer Position Handler Helm chart for Kubernetes
-name: centralledger-handler-transfer-position
+description: Mojaloop Helm chart tests for Kubernetes
+name: mojaloop-tests
 version: 11.0.1
-appVersion: "11.3.3"
+appVersion: "v0.1"
 home: http://mojaloop.io
 icon: http://mojaloop.io/images/logo.png
 sources:
   - https://github.com/mojaloop/mojaloop
   - https://github.com/mojaloop/helm
-  - https://github.com/mojaloop/central-ledger
 maintainers:
   - name: Miguel de Barros
     email: miguel.debarros@modusbox.com

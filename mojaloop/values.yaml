@@ -5,6 +5,25 @@ global: {}
 
 # Declare variables to be passed into your templates.
 
+tests:
+  image:
+    repository: mojaloop/test-runner
+    tag: v0.1
+    pullPolicy: Always
+  cases:
+    - name: test-setup-hub
+      collection: https://raw.githubusercontent.com/mojaloop/postman/master/MojaloopHub_Setup.postman_collection.json
+      environment: https://raw.githubusercontent.com/mojaloop/deploy-config/deploy/PI12.3/postmanEnvironments/Mojaloop-DEV2-MojaSims.postman_environment.json?token=ACW5O2NCTPFNYZ2GO4DCRF273HVGY
+      delay: 100
+    - name: test-setup-onboarding-mojasim
+      collection: https://raw.githubusercontent.com/mojaloop/postman/master/MojaloopSims_Onboarding.postman_collection.json
+      environment: https://raw.githubusercontent.com/mojaloop/deploy-config/deploy/PI12.3/postmanEnvironments/Mojaloop-DEV2-MojaSims.postman_environment.json?token=ACW5O2NCTPFNYZ2GO4DCRF273HVGY
+      delay: 100
+    - name: test-golden-path-mojasim
+      collection: https://raw.githubusercontent.com/mojaloop/postman/master/Golden_Path_Mojaloop.postman_collection.json
+      environment: https://raw.githubusercontent.com/mojaloop/deploy-config/deploy/PI12.3/postmanEnvironments/Mojaloop-DEV2-MojaSims.postman_environment.json?token=ACW5O2NCTPFNYZ2GO4DCRF273HVGY
+      delay: 100
+
 central:
 
   centralledger:
@@ -3762,7 +3781,7 @@ transaction-requests-service:
   replicaCount: 1
   image:
     repository: mojaloop/transaction-requests-service
-    tag: v11.1.2
+    tag: v11.1.3
     pullPolicy: Always
     command: '["node", "src/index.js", "api"]'
 

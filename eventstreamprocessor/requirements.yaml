@@ -1,3 +1,4 @@
+apiVersion: v1
 # requirements.yaml
 dependencies: []
 # - name: kafka

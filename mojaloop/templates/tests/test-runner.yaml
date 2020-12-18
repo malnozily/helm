@@ -1,0 +1,32 @@
+{{ range $i, $case := .Values.tests.cases -}}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ $.Release.Name }}-{{ $i }}-{{ $case.name }}
+  annotations:
+    helm.sh/hook: test
+    helm.sh/hook-weight: "{{ $i }}"
+    helm.sh/hook-delete-policy: before-hook-creation
+spec:
+  containers:
+    - name: {{ $.Release.Name }}-{{ $i }}-{{ $case.name }}
+      image: {{ $.Values.tests.image.repository }}:{{ $.Values.tests.image.tag }}
+      imagePullPolicy: {{ $.Values.tests.image.pullPolicy | quote }}
+      env:
+        - name: POSTMAN_COLLECTION
+          value: {{ $case.collection | quote }}
+        - name: POSTMAN_ENVIRONMENT
+          value: {{ $case.environment | quote }}
+        - name: POSTMAN_DELAY
+          value: {{ $case.delay | quote }}
+      command:
+        - sh
+        - -ec
+        - |
+          curl -s $POSTMAN_COLLECTION --output collection.json &&
+          curl -s $POSTMAN_ENVIRONMENT --output environment.json &&
+          echo $'Running newman with: \n- COLLECTION=$POSTMAN_COLLECTION \n- ENVIRONMENT=$POSTMAN_ENVIRONMENT' &&
+          newman run --delay-request=$POSTMAN_DELAY --environment=environment.json collection.json
+  restartPolicy: Never
+---
+{{- end }}

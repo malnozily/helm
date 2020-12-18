@@ -1,7 +1,7 @@
 # requirements.yaml
 dependencies:
 - name: central
-  version: 11.0.0
+  version: 11.0.1
   repository: "file://../central"
   condition: central.enabled
 - name: ml-api-adapter
@@ -29,11 +29,11 @@ dependencies:
   repository: "file://../mojaloop-simulator"
   condition: mojaloop-simulator.enabled
 - name: mojaloop-bulk
-  version: 11.0.0
+  version: 11.0.1
   repository: "file://../mojaloop-bulk"
   condition: mojaloop-bulk.enabled
 - name: transaction-requests-service
-  version: 11.0.0
+  version: 11.0.1
   repository: "file://../transaction-requests-service"
   condition: transaction-requests-service.enabled
 - name: finance-portal

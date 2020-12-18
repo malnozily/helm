@@ -192,6 +192,7 @@ defaults: &defaults
 
     schemeAdapter:
       secrets:
+        tlsSecretName: ''
         tls:
           # In order to enable TLS with your supplied credentials, you will need to:
           # 1. set all three of the `cert`, `key`, `cacert` fields appropriately for each of
